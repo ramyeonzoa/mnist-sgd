@@ -37,9 +37,8 @@ if uploaded_file is not None:
     # 2) NumPy 배열로 변환 (uint8, 0~255)
     arr = np.array(img).astype(np.uint8)  # shape = (28, 28)
 
-    # 3) MNIST 전처리: (255 - 픽셀값) → float32 → 0~1 정규화 → flatten
-    arr_inverted = 255 - arr                     # 뒤집기
-    arr_scaled = arr_inverted.astype("float32") / 255.0
+    # 3) MNIST 전처리: float32 → 0~1 정규화 → flatten
+    arr_scaled = arr.astype("float32") / 255.0
     X_input = arr_scaled.reshape(1, -1)          # shape = (1, 784)
 
     # 업로드된 이미지를 화면에 표시
